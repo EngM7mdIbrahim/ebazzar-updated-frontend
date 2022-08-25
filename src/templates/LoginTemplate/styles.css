@@ -3,16 +3,13 @@
     flex-direction: row;
     width: 100%;
     min-height:100vh;
-    padding: 20px;
-    border: 10px solid black
+    gap: 20px;
 }
 
-.login-temp-image-cont{
+.login-temp-sub-cont{
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: firebrick;
-    border: 5px solid black;
     flex: 1;
-    height: 100%;
+    width: 100%;
 }

@@ -1,6 +1,5 @@
 button{
   cursor: pointer;
-  box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.5);
   border-radius: 5px;
   padding: 10px 30px;
   transition: all 200ms ease;
@@ -24,5 +23,5 @@ button{
 
 
 button:hover{
-  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.5);
+  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
 }

@@ -1,4 +1,5 @@
 import React from "react";
+import { BLACK, isDark, WHITE } from "../../../styles/colors";
 import "./styles.css";
 
 export default function TextBox({
@@ -7,20 +8,23 @@ export default function TextBox({
   onChange = (newValue) => {
     console.error("No on change handler - TBA", newValue);
   },
+  onBlur = undefined,
   style={},
   className = "",
+  name = "",
   isPassword = false
 }) {
   return (
     <input
+      style={{color: isDark ? WHITE : BLACK, ...style }}
+      id ={name}
+      name = {name}
       className={`${className}`}
-      style={{...style}}
       type={isPassword ? 'password' : 'text'}
       placeholder={placeholder}
       value={value}
-      onChange={(event) => {
-        onChange(event.target.value);
-      }}
+      onBlur={onBlur}
+      onChange={onChange}
     />
   );
 }

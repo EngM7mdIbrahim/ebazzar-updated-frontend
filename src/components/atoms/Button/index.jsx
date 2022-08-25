@@ -1,5 +1,5 @@
 import React from "react";
-import { PRIMARY } from "../../../styles/colors";
+import { ACCENT, PRIMARY } from "../../../styles/colors";
 import AppLabel, { TYPES } from '../../atoms/AppLabel'
 import "./styles.css";
 
@@ -12,7 +12,7 @@ export default function Button({
   className = ""
 }) {
   return isPrimary ? (
-    <button className={`${className}`} style={{ backgroundColor: PRIMARY }} onClick={onClick}>
+    <button className={`${className}`} style={{ backgroundColor: ACCENT }} onClick={onClick}>
       {children}
     </button>
   ) : (

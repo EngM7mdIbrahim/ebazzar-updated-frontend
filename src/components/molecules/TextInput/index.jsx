@@ -1,6 +1,6 @@
 import React from "react";
 import "./styles.css";
-import { ALERT, GRAY_LIGHT, SECONDARY } from "../../../styles/colors";
+import { ALERT, BLACK, GRAY_LIGHT, isDark, PRIMARY, SECONDARY, WHITE } from "../../../styles/colors";
 
 import TextBox from "../../atoms/TextBox/";
 import AppLabel, { TYPES as LABEL_TYPES } from "../../atoms/AppLabel";
@@ -11,6 +11,7 @@ export default function TextInput({
   onChange = (newValue) => {
     console.error("No onChange handler! - TIM", newValue);
   },
+  onBlur = undefined,
   placeholder = "No paceholder here! - TIM",
   label = "No label here! - TIM",
   imageSource = "",
@@ -18,6 +19,7 @@ export default function TextInput({
   isPassword = false,
   style = {},
   className = "",
+  name = "",
 }) {
   return (
     <div className={`text-input-cont ${className}`} style={{ ...style }}>
@@ -26,19 +28,23 @@ export default function TextInput({
           {label}
         </AppLabel>
       )}
-      <div style={{backgroundColor: SECONDARY}} className="text-input-box-cont">
+      <div
+        style={{ backgroundColor: PRIMARY, color: isDark ? WHITE : BLACK }}
+        className="text-input-box-cont"
+      >
         <Image
           imageName={imageSource === "" ? undefined : imageSource}
           type={TYPES.ALMOSTTINY}
         />
         <TextBox
+          name={name}
           isPassword={isPassword}
           value={value}
           onChange={onChange}
           placeholder={placeholder}
         />
       </div>
-      <AppLabel  style={{ color: ALERT }} type={LABEL_TYPES.TINY}>
+      <AppLabel style={{ color: ALERT }} type={LABEL_TYPES.TINY}>
         {errorMessage}
       </AppLabel>
     </div>
