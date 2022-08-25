@@ -15,11 +15,22 @@
   border-radius: 5px;
 }
 
-.inputs-cont {
+.form-inputs-cont {
   width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   gap: 5px;
+}
+
+.form-icon-buttons-cont {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
 }

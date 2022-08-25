@@ -8,10 +8,10 @@ import {
 } from "./helper";
 import "./styles.css";
 import Button from "../../atoms/Button";
-import { EXAMPLE_INPUTS } from "./constants";
+import { EXAMPLE_INPUTS, FORM_INPUT_TYPES } from "./constants";
 import { PRIMARY, SECONDARY } from "../../../styles/colors";
 import AppLabel, { TYPES } from "../../atoms/AppLabel";
-import Image, {TYPES as IMAGE_TYPES} from "../../atoms/Image";
+import Image, { TYPES as IMAGE_TYPES } from "../../atoms/Image";
 import IconButton from "../../atoms/IconButton";
 
 export default function Form({
@@ -22,8 +22,7 @@ export default function Form({
   inputs = EXAMPLE_INPUTS,
   titleImageName = "logo.png",
   title = "No title for this form - Form",
-  onSubmit = (newData) =>
-    console.error("No on submit handler - Form", newData),
+  onSubmit = (newData) => console.error("No on submit handler - Form", newData),
 }) {
   const formik = useFormik({
     initialValues: getInitialValues(inputs),
@@ -36,9 +35,15 @@ export default function Form({
       style={{ backgroundColor: SECONDARY, ...style }}
       className={`card login-form-temp ${className}`}
     >
-      <Image style={{alignSelf: 'center'}} imageName={titleImageName} type={IMAGE_TYPES.EXTRALARGE}/>
-      <AppLabel style={titleStyle} isBold type={TYPES.TITLE}>{title}</AppLabel>
-      <div className="inputs-cont">
+      <Image
+        style={{ alignSelf: "center" }}
+        imageName={titleImageName}
+        type={IMAGE_TYPES.EXTRALARGE}
+      />
+      <AppLabel style={titleStyle} isBold type={TYPES.TITLE}>
+        {title}
+      </AppLabel>
+      <div className="form-inputs-cont">
         {inputs.map((input) => {
           input.value = formik.values[input.name];
           input.errorMessage =
@@ -50,10 +55,21 @@ export default function Form({
           input.label = showLabels
             ? input.name.charAt(0).toUpperCase() + input.name.slice(1)
             : null;
-          return getInput(input);
+          return getInput(input, [
+            FORM_INPUT_TYPES.PASSWORD,
+            FORM_INPUT_TYPES.TEXT,
+          ]);
         })}
       </div>
-      <IconButton backgroundColor={PRIMARY}/>
+
+      <div className="form-icon-buttons-cont">
+        {inputs.map((input) => {
+          return getInput(input, [
+            FORM_INPUT_TYPES.ICON_BUTON
+          ]);
+        })}
+      </div>
+
       <Button onClick={formik.handleSubmit}>Submit!</Button>
     </div>
   );

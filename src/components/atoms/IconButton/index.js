@@ -1,13 +1,13 @@
 import React from "react";
 import "./styles.css";
 
-import { SECONDARY } from "../../../styles/colors";
+import { PRIMARY } from "../../../styles/colors";
 import Image, { TYPES } from '../../atoms/Image'
 
 export default function IconButton({
   style = {},
   className = "",
-  backgroundColor = SECONDARY,
+  backgroundColor = PRIMARY,
   iconName = undefined,
   onClick = () =>
     console.error("No on click handler passed here - IconButton "),
