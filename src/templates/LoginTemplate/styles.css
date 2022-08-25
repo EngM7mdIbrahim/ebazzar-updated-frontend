@@ -13,3 +13,12 @@
     flex: 1;
     width: 100%;
 }
+
+.center-image{
+    padding: 20px;
+    border-radius: 1000px;
+}
+
+.background-rand-login-img-tmp{
+    position: absolute;
+}

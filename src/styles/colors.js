@@ -1,4 +1,4 @@
-export const isDark = true;
+export const isDark = false;
 
 const PRIMARY_LIGHT = "#f2f2f2";
 const PRIMARY_DARK = "#111111";

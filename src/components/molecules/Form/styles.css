@@ -1,0 +1,25 @@
+.login-form-temp {
+  min-width: 500px;
+  width: 80%;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: stretch;
+  gap: 40px;
+  padding: 15px;
+  margin: 15px;
+  background-color: white;
+  border-radius: 5px;
+}
+
+.inputs-cont {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+}

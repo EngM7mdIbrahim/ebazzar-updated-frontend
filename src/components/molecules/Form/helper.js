@@ -1,6 +1,6 @@
 import React from "react";
 import * as yup from "yup";
-import TextInput from "../../molecules/TextInput";
+import TextInput from "../TextInput";
 import { FORM_INPUT_TYPES, SINGLE_FORM_INPUT } from "./constants";
 
 //Inputs
