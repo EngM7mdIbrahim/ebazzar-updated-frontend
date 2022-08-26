@@ -63,7 +63,6 @@ export const getIconButton = (input) => {
 };
 
 export const getLink = (input) => {
-  console.log(input)
   return (
     <LinkLabel
       key={nanoid()}

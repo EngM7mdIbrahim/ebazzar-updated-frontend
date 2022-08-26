@@ -29,7 +29,7 @@ export default function Form({
     validationSchema: constructValidationSchema(inputs),
     onSubmit,
   });
-
+  console.log(inputs);
   return (
     <div
       style={{ backgroundColor: SECONDARY, ...style }}
@@ -64,6 +64,7 @@ export default function Form({
 
       <div className="form-icon-buttons-cont">
         {inputs.map((input) => {
+          console.log(input);
           return getInput(input, [
             FORM_INPUT_TYPES.ICON_BUTON
           ]);

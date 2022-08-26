@@ -1,0 +1,22 @@
+.profile-header-temp{
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    align-self: flex-start;
+    justify-content: center;
+    align-items: center;
+}
+
+.profile-cont{
+    border: 2px solid black;
+
+}
+
+#profile-menu{
+    flex-grow: 0;
+    transform: translateX(-100px);
+}
+
+#profile-submenu{
+
+}

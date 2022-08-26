@@ -1,5 +1,5 @@
 .rounded {
-  border-radius: 100%;
+  border-radius: 50%;
 }
 
 .bordered {
@@ -12,6 +12,6 @@
 
 
 img{
-  object-fit: contain;
+  object-fit: cover;
 }
 
