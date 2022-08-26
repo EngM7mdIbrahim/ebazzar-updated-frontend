@@ -15,3 +15,11 @@ export const formatMessages = (message) => {
   return newMessage;
 };
 
+export const isRejectedAction = (action)=>{
+  return action.type.endsWith('rejected');
+}
+
+export const isLoadingAction = (action)=>{
+  return action.type.endsWith('pending')
+}
+

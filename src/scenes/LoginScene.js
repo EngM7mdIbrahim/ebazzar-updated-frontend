@@ -1,60 +1,74 @@
-import React from 'react'
-import LoginSignupTemplate from '../templates/LoginSignUpTemplate'
-import * as yup from 'yup';
-import { FORM_INPUT_TYPES } from '../components/molecules/Form/constants';
+import React, { useEffect } from "react";
+import LoginSignupTemplate from "../templates/LoginSignUpTemplate";
+import * as yup from "yup";
+import { FORM_INPUT_TYPES } from "../components/molecules/Form/constants";
+import { useSelector, useDispatch } from "react-redux";
+import { setErrorMessage, setLoading } from "../slices/general.slice";
+import { signIn } from "../slices/auth.slice";
 
-
-const handleAppleSignup = ()=>alert('Under Construction!')
-const handleFacebookSignup = ()=>alert('Under Construction!')
-const handleGoogleSignup = ()=>alert('Under Construction!')
+const handleAppleSignup = () => alert("Under Construction!");
+const handleFacebookSignup = () => alert("Under Construction!");
+const handleGoogleSignup = () => alert("Under Construction!");
 export default function LoginScene() {
+  const { isLoading, errorMessage } = useSelector((state) => state.auth);
+  const dispatch = useDispatch();
 
-    const inputs = [
-        {
-          type: FORM_INPUT_TYPES.TEXT,
-          value: "",
-          placeholder: "Please enter your email",
-          name: "email",
-          imageSource: "email.png",
-          validation: yup
-            .string()
-            .required("Email is required!")
-            .email("You should enter a valid email!"),
-        },
-        {
-          type: FORM_INPUT_TYPES.PASSWORD,
-          value: "",
-          placeholder: "Please enter your password",
-          name: "password",
-          imageSource: "lock.png",
-          validation: yup
-            .string()
-            .required("Password is required!")
-            .min(8, "Your password should be 8 characters long or more!"),
-        },
-        {
-          type: FORM_INPUT_TYPES.LINK,
-          text: 'Forgot your password?',
-          route: '#',
-          routeText: 'Click here!',
-        },
-        {
-          type: FORM_INPUT_TYPES.LINK,
-          text: 'You are not a dealer?',
-          route: '/signup',
-          routeText: 'Signup then!',
-        }
-      ];
+  useEffect(() => {
+    if (errorMessage) {
+      dispatch(setErrorMessage(errorMessage));
+    }
+    dispatch(setLoading(isLoading));
+  }, [isLoading, errorMessage]);
 
-      
+  const handleLogin = (user) => {
+    dispatch(signIn(user));
+  };
+
+  const inputs = [
+    {
+      type: FORM_INPUT_TYPES.TEXT,
+      value: "",
+      placeholder: "Please enter your email",
+      name: "email",
+      imageSource: "email.png",
+      validation: yup
+        .string()
+        .required("Email is required!")
+        .email("You should enter a valid email!"),
+    },
+    {
+      type: FORM_INPUT_TYPES.PASSWORD,
+      value: "",
+      placeholder: "Please enter your password",
+      name: "password",
+      imageSource: "lock.png",
+      validation: yup
+        .string()
+        .required("Password is required!")
+        .min(8, "Your password should be 8 characters long or more!"),
+    },
+    {
+      type: FORM_INPUT_TYPES.LINK,
+      text: "Forgot your password?",
+      route: "#",
+      routeText: "Click here!",
+    },
+    {
+      type: FORM_INPUT_TYPES.LINK,
+      text: "You are not a dealer?",
+      route: "/signup",
+      routeText: "Signup then!",
+    },
+  ];
 
   return (
     <LoginSignupTemplate
-        inputs={inputs}
-        title="What's up, Dealer!"
-        onAppleSignup={handleAppleSignup}
-        onGoogleSignup={handleGoogleSignup}
-        onFacebookSignup={handleFacebookSignup}
+      inputs={inputs}
+      onFormSubmit={handleLogin}
+      title="What's up, Dealer!"
+      onAppleSignup={handleAppleSignup}
+      onGoogleSignup={handleGoogleSignup}
+      onFacebookSignup={handleFacebookSignup}
     />
-  )
+  );
 }
