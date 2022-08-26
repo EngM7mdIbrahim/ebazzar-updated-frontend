@@ -38,6 +38,7 @@ export default function Image({
   type = TYPES.SMALL,
   style = {},
   className = "",
+  isContain = false,
   onClick = () => {},
 }) {
   let SIZE = {};
@@ -84,10 +85,11 @@ export default function Image({
       scale = SCALE_LARGE;
       break;
   }
-  SIZE = { width: scale, height: scale };
+  SIZE = { width: scale, height: isContain ? undefined:scale };
   return (
     <img
       onClick={onClick}
+      
       className={
         (isBordered ? "bordered" : "") +
         (isRounded ? "rounded " : "") +
@@ -99,7 +101,7 @@ export default function Image({
           : require("../../../assets/images/" + imageName)
       }
       alt={imageName}
-      style={{ ...style, ...SIZE }}
+      style={{ objectFit: isContain ? 'contain':'cover', ...SIZE,...style }}
     />
   );
 }

@@ -29,13 +29,13 @@ export default function Form({
     validationSchema: constructValidationSchema(inputs),
     onSubmit,
   });
-  console.log(inputs);
   return (
     <div
       style={{ backgroundColor: SECONDARY, ...style }}
       className={`card login-form-temp ${className}`}
     >
       <Image
+      isContain
         style={{ alignSelf: "center" }}
         imageName={titleImageName}
         type={IMAGE_TYPES.EXTRALARGE}
@@ -64,7 +64,7 @@ export default function Form({
 
       <div className="form-icon-buttons-cont">
         {inputs.map((input) => {
-          console.log(input);
+        
           return getInput(input, [
             FORM_INPUT_TYPES.ICON_BUTON
           ]);

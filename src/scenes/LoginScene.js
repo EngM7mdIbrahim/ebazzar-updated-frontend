@@ -45,6 +45,9 @@ export default function LoginScene() {
           routeText: 'Signup then!',
         }
       ];
+
+      
+
   return (
     <LoginSignupTemplate
         inputs={inputs}

@@ -1,28 +1,38 @@
-import React from 'react';
-import './App.css';
-import SignupScene from './scenes/SignupScene';
+import React, { useEffect } from "react";
+import "./App.css";
+import SignupScene from "./scenes/SignupScene";
+import LoginScene from "./scenes/LoginScene";
 
-import LoginScene from './scenes/LoginScene';
+import ProfileTemplate from "./templates/ProfileTemplate";
 
-
-
-import ProfileTemplate from './templates/ProfileTemplate';
-import {
-  BrowserRouter,
-  Routes,
-  Route,
-} from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import LoadingPopUp from "./components/molecules/LoadingPopUp";
+import ErrorPopUp from "./components/molecules/ErrorPopUp";
+import { setErrorMessage } from "./slices/general.slice";
 
 function App() {
+  const { isLoading, errorMessage } = useSelector((state) => state.general);
+  const dispatch = useDispatch();
+
   return (
-    <BrowserRouter>
-    <Routes>
-      <Route path="/" element={<LoginScene/>}/>
-      <Route path="/login" element={<LoginScene />}/>
-      <Route path="/signup" element={<SignupScene />}/>
-      <Route path="/profile" element={<ProfileTemplate/>}/>
-    </Routes>
-  </BrowserRouter>
+    <div>
+      <ErrorPopUp
+        errorMessage={errorMessage}
+        onClick={() => {
+          dispatch(setErrorMessage(""));
+        }}
+      />
+      <LoadingPopUp isLoading={isLoading} />
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<LoginScene />} />
+          <Route path="/login" element={<LoginScene />} />
+          <Route path="/signup" element={<SignupScene />} />
+          <Route path="/profile" element={<ProfileTemplate />} />
+        </Routes>
+      </BrowserRouter>
+    </div>
   );
 }
 
