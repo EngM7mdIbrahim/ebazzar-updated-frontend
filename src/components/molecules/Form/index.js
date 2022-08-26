@@ -70,6 +70,14 @@ export default function Form({
         })}
       </div>
 
+      <div className="form-links-cont">
+        {inputs.map((input) => {
+          return getInput(input, [
+            FORM_INPUT_TYPES.LINK
+          ]);
+        })}
+      </div>
+
       <Button onClick={formik.handleSubmit}>Submit!</Button>
     </div>
   );

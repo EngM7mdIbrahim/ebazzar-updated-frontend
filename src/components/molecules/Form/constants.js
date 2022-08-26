@@ -4,6 +4,7 @@ export const FORM_INPUT_TYPES = {
   TEXT: "text",
   PASSWORD: "password",
   ICON_BUTON: "iconButton",
+  LINK: 'link'
 };
 
 export const TEXT_FORM_INPUT_EXAMPLE = {
@@ -21,6 +22,13 @@ export const ICON_FORM_BUTTON_EXAMPLE = {
   onClick: () =>
     console.error("No on click hanler passed for this Icon Button - Form"),
   backgroundColor: undefined,
+};
+
+export const FORM_LINK_EXAMPLE = {
+  type: FORM_INPUT_TYPES.LINK,
+  route: undefined,
+  text: "",
+  routeText: 'No route text passed - Form'
 };
 
 export const EXAMPLE_INPUTS = [
@@ -68,6 +76,18 @@ export const EXAMPLE_INPUTS = [
     onClick: () => {
       console.log("Apple is clicked!");
     },
+  },
+  {
+    type: FORM_INPUT_TYPES.LINK,
+    text: 'Forgot your password?',
+    route: '#',
+    routeText: 'Click here!',
+  },
+  {
+    type: FORM_INPUT_TYPES.LINK,
+    text: 'You are not a dealer?',
+    route: '#',
+    routeText: 'Signup then!',
   }
 
 ];
