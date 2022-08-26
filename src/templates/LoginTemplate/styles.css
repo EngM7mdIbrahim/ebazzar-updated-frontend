@@ -22,3 +22,9 @@
 .background-rand-login-img-tmp{
     position: absolute;
 }
+
+@media screen and (max-width: 600px) {
+    body {
+      background-color: lightblue;
+    }
+  }
