@@ -15,11 +15,17 @@ export const formatMessages = (message) => {
   return newMessage;
 };
 
-export const isRejectedAction = (action)=>{
-  return action.type.endsWith('rejected');
-}
+export const isRejectedAction = (action) => {
+  return action.type.endsWith("rejected");
+};
 
-export const isLoadingAction = (action)=>{
-  return action.type.endsWith('pending')
-}
+export const isLoadingAction = (action) => {
+  return action.type.endsWith("pending");
+};
 
+export const isFulfilledAuthAction = (action) => {
+  return (
+    (action.type.includes("signin") || action.type.includes("signup")) &&
+    action.type.endsWith("fulfilled")
+  );
+};

@@ -3,24 +3,28 @@ import LoginSignupTemplate from "../templates/LoginSignUpTemplate";
 import * as yup from "yup";
 import { FORM_INPUT_TYPES } from "../components/molecules/Form/constants";
 import { useSelector, useDispatch } from "react-redux";
-import { setErrorMessage, setLoading } from "../slices/general.slice";
-import { signIn } from "../slices/auth.slice";
+import { signIn, resetState } from "../slices/auth.slice";
+import useGeneralListener from "../hooks/useGeneralListener";
+import { useNavigate } from "react-router-dom";
 
 const handleAppleSignup = () => alert("Under Construction!");
 const handleFacebookSignup = () => alert("Under Construction!");
 const handleGoogleSignup = () => alert("Under Construction!");
 export default function LoginScene() {
-  const { isLoading, errorMessage } = useSelector((state) => state.auth);
+  const { isLoading, errorMessage, refreshToken } = useSelector((state) => state.auth);
+  useGeneralListener(errorMessage,isLoading);
   const dispatch = useDispatch();
+  const goTo = useNavigate();
 
   useEffect(() => {
-    if (errorMessage) {
-      dispatch(setErrorMessage(errorMessage));
+    if (refreshToken) {
+      dispatch(resetState());
+      goTo("/profile");
     }
-    dispatch(setLoading(isLoading));
-  }, [isLoading, errorMessage]);
+  }, [isLoading, errorMessage, dispatch]);
 
   const handleLogin = (user) => {
+    console.log("User: ", user);
     dispatch(signIn(user));
   };
 

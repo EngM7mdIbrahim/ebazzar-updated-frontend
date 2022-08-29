@@ -16,7 +16,7 @@ function App() {
   const dispatch = useDispatch();
 
   return (
-    <div>
+    <>
       <ErrorPopUp
         errorMessage={errorMessage}
         onClick={() => {
@@ -32,7 +32,7 @@ function App() {
           <Route path="/profile" element={<ProfileTemplate />} />
         </Routes>
       </BrowserRouter>
-    </div>
+    </>
   );
 }
 
