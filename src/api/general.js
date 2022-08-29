@@ -1,17 +1,20 @@
-import { ACCESS_TOKEN_KEY, BASE_URL } from "../utils/constants";
-
+import {
+  ACCESS_TOKEN_KEY,
+  BASE_URL,
+  REFRESH_TOKEN_KEY,
+} from "../utils/constants";
+import { refreshTokenReq } from "./auth.api";
 
 const axios = require("axios");
 const apiClient = axios.create({
-    baseURL:  BASE_URL
+  baseURL: BASE_URL,
 });
-
 
 // Request interceptor for API calls
 apiClient.interceptors.request.use(
   async (config) => {
     config.headers = {
-      'Authorization': `Bearer ${localStorage.getItem(ACCESS_TOKEN_KEY)}`,
+      Authorization: `Bearer ${localStorage.getItem(ACCESS_TOKEN_KEY)}`,
       "Content-Type": "application/json",
     };
     return config;
@@ -28,9 +31,18 @@ apiClient.interceptors.request.use(
 //   },
 //   async function (error) {
 //     const originalRequest = error.config;
-//     if (error.response.status === 403 && !originalRequest._retry) {
+//     if (
+//       error.response.status === 403 &&
+//       !originalRequest._retry &&
+//       !(
+//         originalRequest.config.url.endsWith("signup") ||
+//         originalRequest.config.url.endsWith("signin")
+//       )
+//     ) {
 //       originalRequest._retry = true;
-//       const access_token = await refreshAccessToken();
+//       const access_token = await refreshTokenReq(
+//         localStorage.getItem(REFRESH_TOKEN_KEY)
+//       );
 //       axios.default.headers.common["Authorization"] = "Bearer " + access_token;
 //       return apiClient(originalRequest);
 //     }

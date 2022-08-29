@@ -17,3 +17,10 @@ export const signUpReq = async (user)=>{
     })
     return response;
 }
+
+export const refreshTokenReq = async(refreshToken)=>{
+    let response = await apiClient.post('/auth/token', {
+        refreshToken
+    })
+    return response.data
+}
