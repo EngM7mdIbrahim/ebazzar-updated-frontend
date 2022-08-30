@@ -1,35 +1,41 @@
-import React from "react";
-import AppLabel from "../../components/atoms/AppLabel";
-import Image, { TYPES } from "../../components/atoms/Image";
+import React, { Fragment } from "react";
+import FragmentHandler from "../../components/organisms/FragmentHandler";
+import SideTabBar from "../../components/organisms/SideTabBar";
 import { PRIMARY } from "../../styles/colors";
 import "./styles.css";
 
 export default function ProfileTemplate({
   name = "Mohamed Ibrahim",
   photoUrL = "user-avatar.jpg",
+  
 }) {
+  const tabs = [
+    {
+      name: "dashboard",
+      displayName: "Dashboard",
+      imageName: "dashboard.png",
+      component: <DashboardTemplate/>
+    },
+    {
+      name: "ad",
+      displayName: "Show Ads",
+      imageName: "ad.png",
+    },
+    {
+      name: "create",
+      displayName: "Create Ad",
+      imageName: "create.png",
+    },
+  ];
   return (
-    <div
-      style={{ flex: 1, backgroundColor: PRIMARY, padding: "20px" }}
-      className="page"
-    >
-      <div
-
-        id="profile-menu"
-        className="profile-cont"
-      >
-        <div className="profile-header-temp">
-          <Image imageName={photoUrL} type={TYPES.ALMOSTSMALL} isRounded />
-          <AppLabel isBold>
-            Hi {name}!<br /> Good to see you?
-          </AppLabel>
-        </div>
-      </div>
-      <div
-      style={{flex: 1}}
-        id="profile-submenu"
-        className="profile-cont"
-      ></div>
+    <div style={{ flex: 1, backgroundColor: PRIMARY }} className="page">
+      <SideTabBar tabs={tabs} userName={name} imageName={photoUrL} />
+      <FragmentHandler
+        fragments={tabs.map((tab) => {
+          return { component: tab.component, name: tab.name };
+        })}
+        selected={tabs[0].name}
+      />
     </div>
   );
 }
